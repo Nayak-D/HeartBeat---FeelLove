@@ -1,0 +1,1 @@
+// File deleted as auth components are removed.

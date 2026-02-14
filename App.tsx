@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Tab, Game } from './types';
 import FireTab from './components/FireTab';
@@ -64,8 +63,10 @@ const App: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>(() => {
       const saved = localStorage.getItem('hb_chat_history');
       if (saved) {
-          const parsed = JSON.parse(saved);
-          return parsed.map((m: any) => ({ ...m, timestamp: new Date(m.timestamp) }));
+          try {
+            const parsed = JSON.parse(saved);
+            return parsed.map((m: any) => ({ ...m, timestamp: new Date(m.timestamp) }));
+          } catch(e) { return []; }
       }
       return [
         { id: '1', sender: 'partner', text: 'Welcome to HeartBeat! Invite your partner to start the journey ❤️', timestamp: new Date(Date.now() - 3600000) }
@@ -94,7 +95,11 @@ const App: React.FC = () => {
 
   const sendMessage = (text: string, sender: 'me' | 'partner' = 'me') => {
       const newMessage: ChatMessage = { id: Date.now().toString(), sender, text, timestamp: new Date() };
-      setMessages(prev => [...prev, newMessage]);
+      setMessages(prev => {
+          const next = [...prev, newMessage];
+          localStorage.setItem('hb_chat_history', JSON.stringify(next));
+          return next;
+      });
 
       if (sender === 'me' && partner) {
           setTimeout(() => {
@@ -114,7 +119,6 @@ const App: React.FC = () => {
 
   const handleInteractionComplete = (msg: string) => {
       sendMessage(msg, 'me');
-      // Simulate partner sending one back soon
       if (partner) {
           setTimeout(() => {
             showPushNotification({
@@ -131,6 +135,11 @@ const App: React.FC = () => {
   const toggleTheme = () => {
     setTheme(prev => prev === 'light' ? 'dark' : 'light');
     if (navigator.vibrate) navigator.vibrate(20);
+  };
+
+  const handleResetApp = () => {
+    localStorage.clear();
+    window.location.reload();
   };
 
   const isLight = theme === 'light';
@@ -194,7 +203,6 @@ const App: React.FC = () => {
                     onConnectPartner={handleConnectPartner} 
                     theme={theme} 
                     messages={messages}
-                    userInviteCode={profile.inviteCode}
                     onSendMessage={(text) => sendMessage(text, 'me')}
                 />
             )}
@@ -203,7 +211,7 @@ const App: React.FC = () => {
               <SettingsScreen 
                 onBack={() => setActiveTab(Tab.FIRE)} 
                 onOpenAi={() => setShowAiChat(true)}
-                onSignOut={() => { localStorage.clear(); window.location.reload(); }}
+                onSignOut={handleResetApp}
                 theme={theme}
                 onUpdateProfile={(name, avatar, isCustom) => setProfile(p => ({...p, name, avatar, isCustom: !!isCustom}))}
                 onToggleTheme={toggleTheme}

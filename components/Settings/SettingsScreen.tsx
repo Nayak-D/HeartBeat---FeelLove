@@ -1,9 +1,8 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { 
   Bot, 
   Palette, 
-  LogOut, 
+  RefreshCcw, 
   Shield, 
   Bell, 
   ChevronRight, 
@@ -36,7 +35,6 @@ interface SettingsScreenProps {
 const PRESET_AVATARS = [
   { id: 'bunny', url: 'https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=200&h=200&fit=crop', label: 'Bunny' },
   { id: 'dog', url: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=200&h=200&fit=crop', label: 'Dog' },
-  { id: 'panda', url: 'https://images.unsplash.com/photo-1564349683136-77e08bef1ed1?w=200&h=200&fit=crop', label: 'Panda' },
   { id: 'fox', url: 'https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=200&h=200&fit=crop', label: 'Fox' },
   { id: 'koala', url: 'https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?w=200&h=200&fit=crop', label: 'Koala' },
 ];
@@ -232,18 +230,18 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onOpenAi, onSignOut, th
               </div>
               <div className="text-left">
                 <h5 className={`font-black text-xs uppercase tracking-widest ${isLight ? 'text-slate-700' : 'text-white'}`}>Security Details</h5>
-                <p className="text-[9px] font-black uppercase tracking-widest text-white/30">End-to-End Encrypted</p>
+                <p className="text-[9px] font-black uppercase tracking-widest text-white/30">Offline Only Mode</p>
               </div>
             </div>
             <div className="flex items-center space-x-1.5 bg-green-500/10 px-2 py-0.5 rounded-full">
               <Lock size={10} className="text-green-500" />
-              <span className="text-[7px] font-black uppercase tracking-widest text-green-500">Verified</span>
+              <span className="text-[7px] font-black uppercase tracking-widest text-green-500">Local</span>
             </div>
           </div>
         </div>
 
         {/* Danger Zone */}
-        <h4 className={`px-1 text-[10px] font-black uppercase tracking-[4px] opacity-30 mt-6 ${isLight ? 'text-pink-900' : 'text-white'}`}>Account</h4>
+        <h4 className={`px-1 text-[10px] font-black uppercase tracking-[4px] opacity-30 mt-6 ${isLight ? 'text-pink-900' : 'text-white'}`}>System</h4>
         <div className={`rounded-[3rem] border overflow-hidden shadow-xl transition-all ${isLight ? 'bg-white border-pink-50 shadow-pink-50' : 'bg-white/5 border-white/5 shadow-black/40'}`}>
           <button 
             onClick={onSignOut}
@@ -251,11 +249,11 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onOpenAi, onSignOut, th
           >
             <div className="flex items-center space-x-4">
               <div className={`w-11 h-11 rounded-2xl flex items-center justify-center transition-colors ${isLight ? 'bg-red-50 group-hover:bg-red-500 group-hover:text-white' : 'bg-red-500/10 group-hover:bg-red-500 group-hover:text-white'}`}>
-                <LogOut size={20} className="text-red-500 group-hover:text-white transition-colors" />
+                <RefreshCcw size={20} className="text-red-500 group-hover:text-white transition-colors" />
               </div>
               <div className="text-left">
-                <h5 className={`font-black text-xs uppercase tracking-widest ${isLight ? 'text-slate-700' : 'text-red-500'}`}>Sign Out</h5>
-                <p className="text-[9px] font-black uppercase tracking-widest text-white/30">Clear session & log off</p>
+                <h5 className={`font-black text-xs uppercase tracking-widest ${isLight ? 'text-slate-700' : 'text-red-500'}`}>Reset App</h5>
+                <p className="text-[9px] font-black uppercase tracking-widest text-white/30">Clear all local data</p>
               </div>
             </div>
             <ChevronRight size={18} className="opacity-20 group-hover:translate-x-1 transition-transform" />
@@ -265,7 +263,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = ({ onOpenAi, onSignOut, th
 
       <div className="pt-6 flex flex-col items-center text-center opacity-20">
          <Heart size={20} fill={isLight ? '#ff2d55' : 'white'} className="mb-4" />
-         <p className="text-[8px] font-black uppercase tracking-[5px]">HeartBeat Social v2.6.0</p>
+         <p className="text-[8px] font-black uppercase tracking-[5px]">HeartBeat Social v2.7.0</p>
       </div>
     </div>
   );
