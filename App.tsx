@@ -151,7 +151,8 @@ const App: React.FC = () => {
         <div className="side-button volume-down"></div>
         <div className="side-button power-btn"></div>
 
-        <div className={`mobile-frame relative flex flex-col transition-all duration-700 ${isLight ? 'bg-[#fff5f7]' : 'bg-black'}`}>
+        {/* Removed transition-all to prevent horizontal width wobbling between sections */}
+        <div className={`mobile-frame relative flex flex-col transition-colors duration-700 ${isLight ? 'bg-[#fff5f7]' : 'bg-black'}`}>
           <div className="glass-glare"></div>
 
           {/* Global Notification Toast */}
@@ -185,7 +186,8 @@ const App: React.FC = () => {
             <h1 id="main-logo" className={`text-2xl font-bold tracking-tighter font-serif italic transition-colors duration-500 ${isLight ? 'text-[#ff2d55]' : 'text-white'}`}>HeartBeat</h1>
           </header>
 
-          <main className={`flex-1 w-full box-border overflow-y-auto overflow-x-hidden custom-scrollbar px-6 pb-20 relative z-10 transition-colors duration-700 ${isLight ? 'text-slate-800' : 'text-white'}`}>
+          {/* Locked Content Area - Strict width constraints */}
+          <main className={`flex-1 w-full max-w-full min-w-0 min-h-0 box-border overflow-y-auto overflow-x-hidden custom-scrollbar px-6 pb-24 relative z-10 transition-colors duration-700 ${isLight ? 'text-slate-800' : 'text-white'}`}>
             {activeTab === Tab.FIRE && (
                 <FireTab 
                     theme={theme} 

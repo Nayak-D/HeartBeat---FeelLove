@@ -27,9 +27,9 @@
         body::before {
             content: '';
             position: absolute;
-            width: 1000px;
-            height: 1000px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+            width: 1200px;
+            height: 1200px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.06) 0%, transparent 70%);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -50,7 +50,7 @@
             animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
         }
 
-        /* Responsive High-Fidelity Mobile Frame */
+        /* Locked High-Fidelity Mobile Frame - Increased Width */
         .device-wrapper {
             display: flex;
             align-items: center;
@@ -59,19 +59,25 @@
             width: 100vw;
             padding: 20px;
             box-sizing: border-box;
+            background: #000;
         }
 
         .device-container {
             position: relative;
-            padding: 12px;
+            padding: 14px; /* Slightly thicker bezel for larger size */
             background: #1a1a1a;
-            border-radius: 4.5rem;
-            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.8), 
-                        inset 0 0 2px 1px rgba(255,255,255,0.1),
-                        0 0 0 4px rgba(255,255,255,0.02);
-            /* Strictly maintained size based on 410x880 design */
-            height: clamp(500px, 95vh, 880px);
-            aspect-ratio: 410 / 880;
+            border-radius: 4.8rem;
+            box-shadow: 0 60px 120px -30px rgba(0,0,0,0.9), 
+                        inset 0 0 3px 1px rgba(255,255,255,0.12),
+                        0 0 0 5px rgba(255,255,255,0.02);
+            
+            /* Increased size for the 'Perfect' wide mobile view */
+            --frame-height: clamp(650px, 96vh, 920px);
+            height: var(--frame-height);
+            /* Calculated width for a modern Pro Max aspect ratio (approx 520/920) */
+            width: calc(var(--frame-height) * 520 / 920);
+            max-width: 520px; 
+            
             display: flex;
             align-items: center;
             justify-content: center;
@@ -85,10 +91,10 @@
             height: 100%;
             background: #000;
             overflow: hidden;
-            border-radius: 3.8rem;
+            border-radius: 4rem;
             display: flex;
             flex-direction: column;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.6);
             z-index: 10;
         }
 
@@ -99,10 +105,10 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 40%, transparent 60%, rgba(255,255,255,0.02) 100%);
+            background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 45%, transparent 55%, rgba(255,255,255,0.02) 100%);
             pointer-events: none;
             z-index: 100;
-            border-radius: 3.8rem;
+            border-radius: 4rem;
         }
 
         /* Hardware Buttons */
@@ -117,35 +123,11 @@
         .volume-down { width: 3px; height: 6%; left: -3px; top: 25%; }
         .power-btn { width: 3px; height: 10%; right: -3px; top: 22%; }
 
-        @media (max-width: 450px) or (max-height: 600px) {
-            .device-wrapper {
-                padding: 0;
-            }
-            .device-container {
-                padding: 0;
-                background: transparent;
-                border-radius: 0;
-                box-shadow: none;
-                width: 100%;
-                height: 100%;
-                max-width: none;
-                max-height: none;
-                aspect-ratio: auto;
-                border: none;
-            }
-            .mobile-frame {
-                width: 100% !important;
-                height: 100% !important;
-                border-radius: 0;
-            }
-            .side-button, .glass-glare { display: none; }
-        }
-
         /* Home Indicator */
         .home-indicator {
-            width: 35%;
+            width: 32%;
             height: 5px;
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.35);
             border-radius: 10px;
             position: absolute;
             bottom: 8px;
@@ -156,8 +138,8 @@
 
         /* Dynamic Island */
         .dynamic-island {
-            width: 30%;
-            height: 32px;
+            width: 28%;
+            height: 34px;
             background: #000;
             border-radius: 20px;
             position: absolute;
@@ -168,7 +150,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
         }
 
         /* Custom Logo Glow Style */
@@ -179,6 +161,19 @@
             color: #ff2d55 !important;
             text-shadow: 0 0 20px rgba(255, 45, 85, 0.8), 0 0 40px rgba(255, 45, 85, 0.4);
             transform: scale(1.1);
+        }
+
+        /* Small screen handling */
+        @media (max-width: 540px), (max-height: 650px) {
+            body {
+                overflow: auto;
+                align-items: flex-start;
+            }
+            .device-wrapper {
+                padding: 10px 0;
+                height: auto;
+                min-height: 100vh;
+            }
         }
     </style>
 <script type="importmap">
