@@ -72,7 +72,7 @@ const AiChat: React.FC<AiChatProps> = ({ onBack }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black z-[60] flex flex-col animate-in fade-in slide-in-from-right duration-300">
+    <div className="absolute inset-0 bg-black z-[60] flex flex-col animate-in fade-in slide-in-from-right duration-300">
       <div className="pt-12 pb-4 px-6 border-b border-white/5 flex items-center justify-between bg-black/50 backdrop-blur-xl">
         <div className="flex items-center space-x-3">
           <button onClick={onBack} className="p-2 -ml-2 text-white/50 hover:text-white">
@@ -100,7 +100,7 @@ const AiChat: React.FC<AiChatProps> = ({ onBack }) => {
           </button>
           <button 
             onClick={() => setMode('pro')}
-            className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg transition-all ${mode === 'pro' ? 'bg-indigo-500 text-white shadow-lg' : 'text-white/40'}`}
+            className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg transition-all ${mode === 'pro' ? 'bg-indigo-50 text-white shadow-lg' : 'text-white/40'}`}
           >
             <Sparkles size={14} fill={mode === 'pro' ? 'currentColor' : 'none'} />
             <span className="text-[10px] font-black uppercase tracking-widest">Pro</span>

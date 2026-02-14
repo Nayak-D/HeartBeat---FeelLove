@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { PhoneOff, Mic, MicOff, Video, VideoOff, Volume2 } from 'lucide-react';
 
@@ -25,7 +24,7 @@ const CallOverlay: React.FC<CallOverlayProps> = ({ type, name, onEnd }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-[100] bg-[#0a0a0a] flex flex-col items-center justify-between py-24 px-8 overflow-hidden">
+    <div className="absolute inset-0 z-[100] bg-[#0a0a0a] flex flex-col items-center justify-between py-24 px-8 overflow-hidden">
       {/* Video Background Mock */}
       {type === 'video' && videoOn && (
         <div className="absolute inset-0 z-[-1] opacity-40">

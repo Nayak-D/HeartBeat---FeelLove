@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ChevronLeft, Share2, Copy, Check, Users, Sparkles, ShieldCheck } from 'lucide-react';
 
@@ -47,7 +46,7 @@ const InviteScreen: React.FC<InviteScreenProps> = ({ onBack, onConnect }) => {
       setIsConnecting(true);
       if (navigator.vibrate) navigator.vibrate([20, 100]);
       
-      // Simulate connecting to partner via Firebase concept
+      // Simulate connecting to partner via local sync concept
       setTimeout(() => {
         if (onConnect) {
           onConnect('Dreamer', 'https://i.pravatar.cc/150?u=dreamer', partnerCode);
@@ -59,7 +58,7 @@ const InviteScreen: React.FC<InviteScreenProps> = ({ onBack, onConnect }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black z-[250] flex flex-col p-8 animate-in slide-in-from-bottom duration-500 overflow-y-auto custom-scrollbar">
+    <div className="absolute inset-0 bg-black z-[250] flex flex-col p-8 animate-in slide-in-from-bottom duration-500 overflow-y-auto custom-scrollbar">
       <div className="pt-10 flex justify-between items-center mb-8 shrink-0">
         <button 
           onClick={onBack}
@@ -148,7 +147,7 @@ const InviteScreen: React.FC<InviteScreenProps> = ({ onBack, onConnect }) => {
             <div className="w-1.5 h-1.5 bg-white rounded-full" />
             <div className="w-1.5 h-1.5 bg-white rounded-full" />
          </div>
-         <p className="text-[8px] font-black uppercase tracking-[4px]">Powered by Firebase Sync</p>
+         <p className="text-[8px] font-black uppercase tracking-[4px]">Powered by Local Sync Engine</p>
       </div>
     </div>
   );
