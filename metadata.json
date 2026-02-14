@@ -1,0 +1,8 @@
+{
+  "name": "HeartBeat - FEEL LOVE",
+  "description": "A high-fidelity social networking mobile application featuring real-time gaming, collaborative music listening,  and unique haptic interactions like 'FEEL CONNECTED : PLACE AND HOLD YOUR THUMB ON THE SCREEN TO REMINDER YOUR PARTNER OF YOU...without traditional call or chats '. Connect with your partner through chat, voice, and video calls in a sleek, arcade-inspired interface, listening and rocking music together , make things remember with task reminder, distance tracker and many more...come lets join HEARTBEAT ❤️",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
